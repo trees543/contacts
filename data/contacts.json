@@ -1,0 +1,23 @@
+[
+  {
+    "full_name": "Frodo Baggins",
+    "phone_number": "1231231111",
+    "email": "frodo@shire.com",
+    "tags": "explorer",
+    "id": 1
+  },
+  {
+    "full_name": "Aragorn Elessar",
+    "phone_number": "1234567890",
+    "email": "aragorn@gondor.com",
+    "tags": "swordsman",
+    "id": 2
+  },
+  {
+    "full_name": "Gimli",
+    "phone_number": "1234561231",
+    "email": "gimli@moria.com",
+    "tags": "miner",
+    "id": 3
+  }
+]

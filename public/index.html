@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="./stylesheets/reset.css">
+  <link rel="stylesheet" href="./stylesheets/app.css">
+  
+  <script src="/javascripts/jquery.js"></script>
+  <script src="/javascripts/handlebars.js"></script>
+
+  <script src="/javascripts/app.js" type="module"></script>
+
+  <script id="contacts" type="text/x-handlebars">
+    <div id="contacts-cards-container">
+      {{#each contacts}}
+        {{> contact}}
+      {{/each}}
+    </div>
+  </script>
+  
+  <script id="contact" data-partial="true" type="text/x-handlebars">
+    <div class="contact-card" data-id="{{id}}">
+      <input type="text" value="{{fullName}}" class="edit-input" name="full_name">
+      <input type="email" value="{{email}}" class="edit-input" name="email">
+      <input type="text" value="{{phoneNumber}}" class="edit-input" name="phone_number">
+      <div class="tags drop">
+        {{#if tags}}
+          {{#each tags}}
+            <div class="tag">{{this}}</div>
+          {{/each}}
+          {{else}}
+            <div>----</div>
+        {{/if}}
+
+      </div>
+      <div class="contact-actions">
+        <button class="small-btn delete-contact-btn" data-id="{{id}}">X</button>
+      </div>
+    </div>
+
+  </script>
+
+
+</head>
+<body>
+  <header>
+    <h1>Contact Manager</h1>
+  </header>
+  <nav>
+    <div id="contacts-cards-nav">
+      <div class="flex">
+        <button id="add-contact" class="btn">Add Contact</button>
+        <input type="text" id="search" class="standard-input" placeholder="Search">
+      </div>
+    </div>
+    <div id="add-contact-nav" class="hidden"><h2>Add Contact</h2></div>
+  </nav>
+  <section id="contents">
+    <div class="contents-header">
+      <h2>Contacts</h2>
+      <div id="tags-container">
+        <div id="tags-list"></div>
+        <input type="text" id="tags-input" placeholder="Add Tag" class="standard-input">
+      </div>
+    </div>
+    <div id="contacts-cards"></div>
+    <div id="form-container" class="hidden">
+      <form action="contacts" id="new-contact-form">
+        <fieldset>
+          <dl>
+            <dt>
+              <label for="full-name">Full Name:</label>
+            </dt>
+            <dd>
+              <input type="text" data-validate="hasContent" name="full_name" id="full-name" class="standard-input">
+              <div dataset-key="fullName" class="invalid"></div>
+            </dd>
+          </dl>
+  
+          <dl>
+            <dt>
+              <label for="email-address">Email Address:</label>
+            </dt>
+            <dd>
+              <input type="email" data-validate="hasContent email" name="email" id="email-address" class="standard-input">
+              <div dataset-key="email" class="invalid"></div>
+            </dd>
+          </dl>
+  
+          <dl>
+            <dt>
+              <label for="phone-number">Phone Number:</label>
+            </dt>
+            <dd>
+              <input type="text" data-validate="hasContent phone" name="phone_number" id="phone-number" class="standard-input">
+              <div dataset-key="phoneNumber" class="invalid"></div>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt>
+              <label for="tags-select">Tags:</label>
+            </dt>
+            <dd>
+              <select name="tags" id="tags-select" class="select" multiple></select>
+            </dd>
+          </dl>
+
+          <button id="submit-btn" class="submit btn">Submit</button>
+          <input type="submit" id="cancel-btn" class="cancel btn" formaction="#" value="Cancel">
+        </fieldset>
+      </form>
+    </div>
+  </section>
+</body>
+</html>
